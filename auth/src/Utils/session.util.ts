@@ -1,9 +1,10 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
+import conf from "../configs";
 import { getSessionToken, setSessionToken } from "../Services/session.service";
 
 export function createSession(email: string) {
   return new Promise<string | undefined>((resolve, reject) => {
-    jwt.sign({ email }, "secretkey", { expiresIn: "72h" }, (err, token) => {
+    jwt.sign({ email }, conf.jwtKey, { expiresIn: "72h" }, (err, token) => {
       if (err) return reject(err);
       if (!token) return resolve(token);
 

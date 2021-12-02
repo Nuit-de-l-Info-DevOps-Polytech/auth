@@ -14,10 +14,12 @@ export function registerUser(
 
   cryptPassword(user.password).then((hash) => {
     createUser({
+      id: "",
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
       pseudo: user.pseudo,
+      isAdmin: false,
       password: hash,
       sessiontoken: "",
       refreshtoken: "",
@@ -38,10 +40,10 @@ export function loginUser(
   res: Response,
   next: NextFunction
 ) {
-  const email = req.body.email;
+  const Id = req.body.email;
   const password = req.body.password;
 
-  getUserById(email)
+  getUserById(Id)
     .then((user) => {
       if (!user) return res.status(404).send("User not Found");
 
