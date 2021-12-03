@@ -29,9 +29,9 @@ export function getSessionPayload(token: string) {
       if (!payload) return resolve(payload);
 
       getSessionTokens(String(payload.email)).then((DBtoken) => {
-        if (DBtoken !== token) return resolve(undefined);
+        if (DBtoken?.find((val) => val === token)) return resolve(undefined);
 
-        resolve(DBtoken);
+        resolve(payload.email);
       });
     });
   });

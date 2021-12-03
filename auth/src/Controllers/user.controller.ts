@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { user } from "../Models/user.model";
+import { deleteSessionToken } from "../Services/session.service";
 import {
   createUser,
   getUserByEmail as getUserByEmail,
@@ -77,7 +78,10 @@ export function loginUser(
       res.status(500).send(err.message);
     });
 }
-export function logoutUser(req: Request, res: Response, next: NextFunction) {}
+export function logoutUser(req: Request, res: Response, next: NextFunction) {
+  const token = req.headers.authorization
+  deleteSessionToken(token)
+}
 export function passwordRequest(
   req: Request<{}, {}, { email: string }>,
   res: Response,

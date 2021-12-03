@@ -17,13 +17,26 @@ export function pushSessionToken(Id: number, token: string) {
 }
 
 export function getSessionTokens(Id: string) {
-  return new Promise<string | null>((resolve, reject) => {
+  return new Promise<Array<string> | null>((resolve, reject) => {
     axios
-      .get<string>(
+      .get<Array<string>>(
         conf.DB_URL + "session_token/createSessionTokenWithUserId/" + Id
       )
       .then((token) => {
         resolve(token.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+export function deleteSessionToken(token: string | undefined) {
+  return new Promise<boolean>((resolve, reject) => {
+    axios
+      .delete(conf.DB_URL + "session_token/deleteSessionTokenByToken/" + token)
+      .then(() => {
+        resolve(true);
       })
       .catch((err) => {
         reject(err);
