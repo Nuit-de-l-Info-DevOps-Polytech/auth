@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { user } from "../Models/user.model";
-import { createUser, getUserById } from "../Services/user.service";
+import {
+  createUser,
+  getUserByEmail as getUserByEmail,
+} from "../Services/user.service";
 import { checkPassword, cryptPassword } from "../Utils/password.util";
 import { createSession } from "../Utils/session.util";
 
@@ -41,10 +44,10 @@ export function loginUser(
   res: Response,
   next: NextFunction
 ) {
-  const Id = req.body.email;
+  const Email = req.body.email;
   const password = req.body.password;
 
-  getUserById(Id)
+  getUserByEmail(Email)
     .then((user) => {
       if (!user) return res.status(404).send("User not Found");
 
@@ -54,7 +57,7 @@ export function loginUser(
         .then((match) => {
           if (!match) return res.status(401).send("Wrong password");
 
-          createSession(user.mail)
+          createSession(user.id!)
             .then((sessionToken) => {
               res.status(200).send(sessionToken);
             })

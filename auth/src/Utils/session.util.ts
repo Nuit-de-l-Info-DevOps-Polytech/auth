@@ -1,16 +1,19 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import conf from "../configs";
-import { getSessionToken, setSessionToken } from "../Services/session.service";
+import {
+  getSessionTokens,
+  pushSessionToken,
+} from "../Services/session.service";
 
-export function createSession(email: string) {
+export function createSession(Id: number) {
   return new Promise<string | undefined>((resolve, reject) => {
-    jwt.sign({ email }, conf.jwtKey, { expiresIn: "72h" }, (err, token) => {
+    jwt.sign({ email: Id }, conf.jwtKey, { expiresIn: "72h" }, (err, token) => {
       if (err) return reject(err);
       if (!token) return resolve(token);
 
-      setSessionToken(email, token)
-        .then((createdToken) => {
-          resolve(createdToken);
+      pushSessionToken(Id, token)
+        .then(() => {
+          resolve(token);
         })
         .catch((err) => {
           reject(err);
@@ -25,7 +28,7 @@ export function getSessionPayload(token: string) {
       if (err) return reject(err);
       if (!payload) return resolve(payload);
 
-      getSessionToken(String(payload.email)).then((DBtoken) => {
+      getSessionTokens(String(payload.email)).then((DBtoken) => {
         if (DBtoken !== token) return resolve(undefined);
 
         resolve(DBtoken);

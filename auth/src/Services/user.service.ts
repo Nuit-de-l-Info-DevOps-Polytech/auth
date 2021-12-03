@@ -4,7 +4,6 @@ import conf from "../configs";
 
 export function createUser(user: user) {
   return new Promise<boolean>((resolve, reject) => {
-    console.log(user);
     axios
       .post(conf.DB_URL + "utilisateur/createUtilisateur", user)
       .then(() => {
@@ -16,10 +15,10 @@ export function createUser(user: user) {
   });
 }
 
-export function getUserById(Id: string) {
+export function getUserByEmail(Email: string) {
   return new Promise<user | null>((resolve, reject) => {
     axios
-      .get<user>(conf.DB_URL + "utilisateur/getUtilisateurById/" + Id)
+      .get<user>(conf.DB_URL + "utilisateur/getUtilisateurByMail/" + Email)
       .then((res) => {
         resolve(res.data);
       })

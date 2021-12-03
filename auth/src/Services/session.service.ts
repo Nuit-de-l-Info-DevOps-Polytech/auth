@@ -1,11 +1,32 @@
-export function setSessionToken(email: string, token: string) {
-  return new Promise<string>((resolve, reject) => {
-    //TODO set session token
+import axios from "axios";
+import conf from "../configs";
+
+export function pushSessionToken(Id: number, token: string) {
+  return new Promise<boolean>((resolve, reject) => {
+    axios
+      .post(conf.DB_URL + "session_token/createSessionTokenWithUserId" + Id, {
+        token: token,
+      })
+      .then(() => {
+        resolve(true);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 }
 
-export function getSessionToken(email: string) {
+export function getSessionTokens(Id: string) {
   return new Promise<string | null>((resolve, reject) => {
-    //TODO get session token
+    axios
+      .get<string>(
+        conf.DB_URL + "session_token/createSessionTokenWithUserId" + Id
+      )
+      .then((token) => {
+        resolve(token.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 }
