@@ -6,7 +6,7 @@ API destinée à la gestion des authentifications
 ## Install
  Install from the command line:
 ```
-docker pull ghcr.io/nuit-de-l-info-devops-polytech/auth:master
+docker pull ghcr.io/nuit-de-l-info-devops-polytech/auth:master.
 ```
 
 ## Run
