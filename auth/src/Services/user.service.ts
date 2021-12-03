@@ -17,17 +17,8 @@ export function createUser(user: user) {
 
 export function getUserByEmail(Email: string) {
   return new Promise<user | null>((resolve, reject) => {
-    console.log(
-      conf.DB_URL +
-        "utilisateur/getUtilisateurByMail/" +
-        encodeURIComponent(Email)
-    );
     axios
-      .get<user>(
-        conf.DB_URL +
-          "utilisateur/getUtilisateurByMail/" +
-          encodeURIComponent(Email)
-      )
+      .get<user>(conf.DB_URL + "utilisateur/getUtilisateurByMail/" + Email)
       .then((res) => {
         resolve(res.data);
       })

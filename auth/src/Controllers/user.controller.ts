@@ -52,6 +52,8 @@ export function loginUser(
 
       const hash = user.password;
 
+      console.log("test");
+
       checkPassword(password, hash)
         .then((match) => {
           if (!match) return res.status(401).send("Wrong password");
