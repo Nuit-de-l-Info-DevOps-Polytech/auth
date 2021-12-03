@@ -61,7 +61,7 @@ export function loginUser(
 
           createSession(user.id!)
             .then((sessionToken) => {
-              res.status(200).send(sessionToken);
+              res.status(200).send({ sessionToken });
             })
             .catch((err) => {
               console.error(err);
@@ -79,8 +79,8 @@ export function loginUser(
     });
 }
 export function logoutUser(req: Request, res: Response, next: NextFunction) {
-  const token = req.headers.authorization
-  deleteSessionToken(token)
+  const token = req.headers.authorization;
+  deleteSessionToken(token);
 }
 export function passwordRequest(
   req: Request<{}, {}, { email: string }>,
