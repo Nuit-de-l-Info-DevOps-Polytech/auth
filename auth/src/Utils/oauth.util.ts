@@ -18,14 +18,6 @@ export function connectGitHub() {
       }
     )
   );
-}
 
-// function HandleGitHubInfo(
-//   accessToken: string,
-//   refreshToken: string,
-//   profile: GitHubStrategy.Profile,
-//   cb: any
-// ) {
-//   console.log(profile);
-//   cb(null, profile);
-// }
+  
+}
