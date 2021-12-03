@@ -4,6 +4,7 @@ import oauthRouter from "./Routes/oauth.route";
 import userRouter from "./Routes/user.route";
 import { connectGitHub } from "./Utils/oauth.util";
 import passport from "passport";
+import cors from "cors";
 
 //Init Express app
 const app = express();
@@ -13,6 +14,8 @@ const port = conf.port;
 
 //JSON body parser for requests with body
 app.use(express.json());
+
+app.use(cors())
 
 connectGitHub();
 
