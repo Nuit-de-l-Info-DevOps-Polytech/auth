@@ -14,15 +14,16 @@ export function registerUser(
 
   cryptPassword(user.password).then((hash) => {
     createUser({
-      id: "",
-      email: user.email,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      id: null,
+      mail: user.mail,
+      prenom: user.prenom,
+      nom: user.nom,
       pseudo: user.pseudo,
+      lieuNaissance: "",
       isAdmin: false,
       password: hash,
-      sessiontoken: "",
-      refreshtoken: "",
+      sessionToken: "",
+      refreshToken: "",
     })
       .then(() => {
         res.status(201).send("User registered !");
@@ -53,7 +54,7 @@ export function loginUser(
         .then((match) => {
           if (!match) return res.status(401).send("Wrong password");
 
-          createSession(user.email)
+          createSession(user.mail)
             .then((sessionToken) => {
               res.status(200).send(sessionToken);
             })

@@ -1,11 +1,12 @@
 export interface user {
-  id: string;
-  email: string;
+  id: number | null;
+  mail: string;
   pseudo: string;
   isAdmin: boolean;
-  firstname: string;
-  lastname: string;
+  lieuNaissance: string;
+  prenom: string;
+  nom: string;
   password: string;
-  sessiontoken: string;
-  refreshtoken: string;
+  sessionToken: string;
+  refreshToken: string;
 }

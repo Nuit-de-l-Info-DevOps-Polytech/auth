@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 
-export function cryptPassword(password: string) {
+export function cryptPassword(pass: string) {
   return new Promise<string>((resolve, reject) => {
     bcrypt
-      .hash(password, 10)
+      .hash(pass, 10)
       .then((hash) => {
         resolve(hash);
       })

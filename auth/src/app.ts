@@ -1,6 +1,8 @@
 import express from "express";
 import conf from "./configs";
 import userRouter from "./Routes/user.route";
+import passport from "passport";
+import { Strategy as FacebookStrategy, Profile } from "passport-facebook";
 
 //Init Express app
 const app = express();

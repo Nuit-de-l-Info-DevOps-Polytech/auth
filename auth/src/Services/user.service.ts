@@ -4,8 +4,9 @@ import conf from "../configs";
 
 export function createUser(user: user) {
   return new Promise<boolean>((resolve, reject) => {
+    console.log(user);
     axios
-      .post(conf.DB_URL, user)
+      .post(conf.DB_URL + "utilisateur/createUtilisateur", user)
       .then(() => {
         resolve(true);
       })
@@ -18,7 +19,7 @@ export function createUser(user: user) {
 export function getUserById(Id: string) {
   return new Promise<user | null>((resolve, reject) => {
     axios
-      .post<user>(conf.DB_URL, Id)
+      .get<user>(conf.DB_URL + "utilisateur/getUtilisateurById/" + Id)
       .then((res) => {
         resolve(res.data);
       })

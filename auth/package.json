@@ -5,20 +5,16 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon ./src/app.ts",
-    "prisma-studio": "prisma studio",
-    "prisma-generate": "prisma generate",
     "build": "tsc"
   },
   "author": "",
   "license": "ISC",
-  "prisma": {
-    "schema": "./src/schema.prisma"
-  },
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "passport-facebook": "^3.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
