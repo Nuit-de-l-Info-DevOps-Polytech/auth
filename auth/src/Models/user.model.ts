@@ -7,6 +7,5 @@ export interface user {
   prenom: string;
   nom: string;
   password: string;
-  sessionToken: string;
-  refreshToken: string;
+  sessionToken: string | null;
 }

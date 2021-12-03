@@ -25,8 +25,7 @@ export function registerUser(
       lieuNaissance: "",
       isAdmin: false,
       password: hash,
-      sessionToken: "",
-      refreshToken: "",
+      sessionToken: null,
     })
       .then(() => {
         res.status(201).send("User registered !");
@@ -40,11 +39,11 @@ export function registerUser(
 
 //Return authentication token with user's info
 export function loginUser(
-  req: Request<{}, {}, { email: string; password: string }>,
+  req: Request<{}, {}, { mail: string; password: string }>,
   res: Response,
   next: NextFunction
 ) {
-  const Email = req.body.email;
+  const Email = req.body.mail;
   const password = req.body.password;
 
   getUserByEmail(Email)
